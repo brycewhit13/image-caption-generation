@@ -1,4 +1,4 @@
-name: Python Continues Integration
+name: Python Continuous Integration
 
 on:
   push:
