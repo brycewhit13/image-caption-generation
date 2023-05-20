@@ -1,7 +1,7 @@
 setup:
 	pip install --upgrade pip
 	pip install -r requirements.txt
-	python setup.py develop
+	python3 setup.py develop
 
 format:
 	black *.py
@@ -11,4 +11,6 @@ lint:
 	pylint --disable=R,C caption/generate_caption.py
 
 test:
-	python -m pytest -vv --cov=caption/generate_caption caption/test_generate_caption.py
+	python3 -m pytest -vv --cov=caption/generate_caption caption/test_generate_caption.py
+
+all: setup format lint test
