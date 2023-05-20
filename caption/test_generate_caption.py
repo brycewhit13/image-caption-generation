@@ -3,7 +3,6 @@ from generate_caption import main
 
 def test_single_image(capfd):
     os.system("caption --image examples/cat_running.jpeg")
-    print(out)
     out, err = capfd.readouterr()
     num_lines = len([line for line in out.split("\n") if line != ""])
     assert num_lines == 1
