@@ -11,7 +11,7 @@ setup(
     install_requires=requirements,
     entry_points="""
         [console_scripts]
-        caption=caption.generate_caption:generate_caption
+        caption=caption.generate_caption:main
     """,
     version="0.1.0",
     author="Bryce Whitney",

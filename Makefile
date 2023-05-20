@@ -1,9 +1,11 @@
-install: 
+setup:
 	pip install --upgrade pip
 	pip install -r requirements.txt
+	python setup.py develop
 
 format:
-	./format.sh
+	black *.py
+	black caption/*.py
 
 lint: 
 	pylint --disable=R,C caption/generate_caption.py
