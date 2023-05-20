@@ -14,7 +14,9 @@ This CLI tool allows you to generate captions for images automatically. This is 
 
 ### Setup the environemnt
 
-```python setup.py develop```
+```make setup```
+
+This upgrades pip, installs the requirements from `requirements.txt` and then runs `python setup.py develop`
 
 ### Run on a single image
 
