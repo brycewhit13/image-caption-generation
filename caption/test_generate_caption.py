@@ -1,5 +1,4 @@
 import os
-from generate_caption import main
 
 
 def test_single_image(capfd):

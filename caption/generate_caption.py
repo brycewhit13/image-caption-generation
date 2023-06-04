@@ -61,12 +61,9 @@ def main(image, folder, ext):
 
         # Generate captions for each image
         for image in images:
-            print("Generating Caption...")
             summary = image_to_text(os.path.join(folder, image))[0]["generated_text"]
             print(f"{image}: {summary}")
             
             # Generate images
-            print("Generating Image...")
             save_path = image.split(".")[0] + "_generated.jpg"
             generate_image(text_to_image, summary, save_path)
-        print("Complete!")
