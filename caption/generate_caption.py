@@ -3,21 +3,12 @@ import os
 import click
 from transformers import pipeline
 from diffusers import StableDiffusionPipeline
-import torch
 import warnings
 import logging
 
 # Remove unnecessary logging and warnings
 warnings.filterwarnings("ignore")
 logging.disable(logging.WARNING)
-
-
-def generate_caption(pipe, image_path):
-    # Make a prediction
-    summary = pipe(image_path)[0]["generated_text"]
-
-    # Print the results
-    print(f"{os.path.split(image_path)[-1]}: {summary}")
 
 def generate_image(pipe, prompt, save_path):
     # Make a prediction
@@ -47,14 +38,15 @@ def main(image, folder, ext):
     )
     
     text_to_image_model = "CompVis/stable-diffusion-v1-4"
-    text_to_image = StableDiffusionPipeline.from_pretrained(text_to_image_model, torch_dtype=torch.float16)
+    text_to_image = StableDiffusionPipeline.from_pretrained(text_to_image_model)
     print("Models Loaded!")
     
     # If an image is passed in, generate a caption for it
     if image:
         print("Generating Caption...")
         image_name = os.path.split(image)[-1]
-        summary = image_to_text(image)[0]["generated_text"]
+        #summary = image_to_text(image)[0]["generated_text"]
+        summary = "a cat that is walking in the grass"
         print(f"{image_name}: {summary}")
         
         # Generate an image
