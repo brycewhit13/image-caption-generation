@@ -38,3 +38,7 @@ def test_invalid_image(capfd):
     os.system("caption --image invalid")
     out, err = capfd.readouterr()
     assert f"Invalid value for '--image'" in err
+    
+def test_image_generation():
+    os.system("caption --image examples/cat_running.jpeg")
+    assert os.path.exists("examples/cat_running_generated.jpg")
