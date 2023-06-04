@@ -6,22 +6,21 @@ def test_single_image(capfd):
     os.system("caption --image examples/cat_running.jpeg")
     out, err = capfd.readouterr()
     num_lines = len([line for line in out.split("\n") if line != ""])
-    assert num_lines == 6
-    assert os.path.exists("examples/cat_running_generated.jpg")
+    assert num_lines == 1
 
 
 def test_folder(capfd):
     os.system("caption --folder examples")
     out, err = capfd.readouterr()
     num_lines = len([line for line in out.split("\n") if line != ""])
-    assert num_lines == 14
+    assert num_lines == 3
 
 
 def test_folder_ext(capfd):
     os.system("caption --folder examples --ext .png")
     out, err = capfd.readouterr()
     num_lines = len([line for line in out.split("\n") if line != ""])
-    assert num_lines == 6
+    assert num_lines == 1
 
 
 def test_invalid_ext(capfd):
@@ -40,3 +39,7 @@ def test_invalid_image(capfd):
     os.system("caption --image invalid")
     out, err = capfd.readouterr()
     assert f"Invalid value for '--image'" in err
+    
+def test_image_generation():
+    os.system("caption --image examples/cat_running.jpeg")
+    assert os.path.exists("examples/cat_running_generated.jpg")

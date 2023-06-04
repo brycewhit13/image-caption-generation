@@ -32,28 +32,22 @@ def generate_image(pipe, prompt, save_path):
 )
 def main(image, folder, ext):
     # Instantiate the pipelines
-    print("Loading Models...")
     image_to_text = pipeline(
         "image-to-text", model="nlpconnect/vit-gpt2-image-captioning"
     )
     
     text_to_image_model = "CompVis/stable-diffusion-v1-4"
     text_to_image = StableDiffusionPipeline.from_pretrained(text_to_image_model)
-    print("Models Loaded!")
     
     # If an image is passed in, generate a caption for it
     if image:
-        print("Generating Caption...")
         image_name = os.path.split(image)[-1]
-        #summary = image_to_text(image)[0]["generated_text"]
-        summary = "a cat that is walking in the grass"
+        summary = image_to_text(image)[0]["generated_text"]
         print(f"{image_name}: {summary}")
         
         # Generate an image
-        print("Generating Image...")
         save_path = image_name.split(".")[0] + "_generated.jpg"
         generate_image(text_to_image, summary, save_path)
-        print("Complete!")
 
     # If a folder is passed in, generate captions for all images in the folder
     elif folder:
