@@ -46,7 +46,7 @@ def main(image, folder, ext):
         print(f"{image_name}: {summary}")
         
         # Generate an image
-        save_path = image_name.split(".")[0] + "_generated.jpg"
+        save_path = os.path.join(os.path.split(image)[0], image_name.split(".")[0] + "_generated.jpg")
         generate_image(text_to_image, summary, save_path)
 
     # If a folder is passed in, generate captions for all images in the folder
